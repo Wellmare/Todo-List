@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #1d6885;
+}
+
+.add-todo {
+    background-color: #1d6885;
+    padding: 30px 10px;
+    z-index: 0;
+    text-align: center;
+}
+
+h1 {
+    background-color: #478ba5;
+    margin: 0;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    text-align: center;
+    color: #002b50;
+    font-weight: 700;
+    font-size: 35px;
+    width: 100vw;
+}
+
+.add-todo h2 {
+    margin-bottom: 8px;
+    color: #001b32;
+}
+
+.container {
+    width: calc(100vw - 15vw);
+    margin: 0 auto;
+}
+
+.add-todo-input {
+    width: 100%;
+    outline: none;
+    height: auto;
+    background-color: #0086af;
+    border: 1px solid #00193b;
+    font-weight: 400;
+    font-size: 25px;
+    padding: 20px 15px;
+    color: #00223f;
+
+}
+.add-todo-input::placeholder {
+    color: #002b50;
+    font-size: 20px;
+}
+.add-todo-btn {
+    background-color: #003a62;
+    border: 2px solid #00193b;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    width: 100%;
+    font-size: 25px;
+    color: #359cd9;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.todo {
+    display: flex;
+    padding: 10px;
+    background-color: #94d8ff;
+    align-items: center;
+}
+.todo-text {
+    color: #363636;
+    font-size: 18px;
+}
+.checkbox {
+    margin-right: 10px;
+}
+.checkbox {
+
+}
+.todo:nth-child(even) {
+    background-color: #5da6d1;
+}
+.todo-delete {
+    margin-left: auto;
+    font-size: 30px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.todo-delete:hover {
+    color: #ff0000;
+}
+.todos {
+    padding-bottom: 100px;
+}
+.todo-empty {
+    background-color: #5da6d1;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 25px;
+    color: #363636;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.checkbox {
+    /*padding: 10px;*/
+    width: 30px;
+    height: 30px;
+}
+@media only screen and (max-width: 480px) {
+    .todo {
+        padding: 20px;
+        font-size: 40px;
+    }
+    .todo-text {
+        font-size: 40px;
+    }
+    .checkbox {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+.line-through {
+    text-decoration: line-through 2px black;
+}
+
+.hide {
+    display: none;
+}
+
+
+

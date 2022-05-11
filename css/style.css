@@ -1,0 +1,423 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    background-color: #2c2c2c;
+    padding-top: 20px;
+    padding-bottom: 25px;
+}
+
+header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.container {
+    width: 80vw;
+    margin: 0 auto;
+}
+
+.add-new-task {
+    margin-left: auto;
+}
+
+.logo {
+    color: #eeeeee;
+    margin-right: 20px;
+}
+
+.logo h1 {
+    font-weight: 300;
+}
+
+.add-task-btn {
+    background-color: #11b8db;
+    color: #e7ffff;
+    padding: 15px;
+    /*border: 1px solid #003a62;*/
+    border: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    height: 50px;
+    /*height: 100%;*/
+    cursor: pointer;
+}
+
+.input-task {
+    outline: none;
+    padding: 10px;
+    height: 50px;
+    /*height: 100%;*/
+    border: none;
+    margin-right: 10px;
+    min-width: 30vw;
+    /*max-width: 50vw;*/
+    font-size: 20px;
+}
+
+.form-add-task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.To-Do,
+.Done {
+    margin-top: 40px;
+    /*margin-bottom: 40px;*/
+}
+
+main {
+}
+
+.header-todo,
+.header-done {
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #bdbdbd;
+}
+
+/*.count-todos,*/
+/*.count-done {*/
+/*    width: 40px;*/
+/*    height: 40px;*/
+/*    border: 3px solid black;*/
+/*    text-align: center;*/
+/*    border-radius: 50%;*/
+/*}*/
+
+/*.count-todos span,*/
+/*.count-done span {*/
+/*    line-height: 40px;*/
+/*}*/
+
+.count-done, .count-todo {
+    position: relative;
+    width: 100px;
+    height: 40px;
+}
+
+.text {
+    display: inline-block;
+    /*background: #ccc;*/
+    color: #000;
+    text-align: center;
+    border-radius: 15px;
+    border: 2px solid black;
+    padding: 5px;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    vertical-align: middle;
+
+}
+
+.text {
+    position: relative;
+    /*top: -.55em;*/
+    /*padding: 0 0.65em;*/
+}
+
+/*.numberCircle {*/
+/*    border-radius: 50%;*/
+/*    width: 36px;*/
+/*    height: 36px;*/
+/*    padding: 8px;*/
+/*    background: #fff;*/
+/*    border: 2px solid #666;*/
+/*    color: #666;*/
+/*    text-align: center;*/
+/*    font: 32px Arial, sans-serif;*/
+/*}*/
+.todo {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    /*background: navajowhite;*/
+    margin-bottom: 5px;
+    /*transition: all 5s ease;*/
+    /*transform: translateX(-150%);*/
+    animation-name: animate;
+    animation-duration: .5s;
+    justify-content: space-between;
+
+}
+@keyframes animate {
+    from {
+        transform: translateX(-50vw);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes delete {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(100vw);
+    }
+}
+@keyframes switch {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100vw);
+    }
+}
+.switch {
+    animation-name: switch;
+    animation-duration: .5s;
+}
+
+.delete {
+    animation-name: delete;
+    animation-duration: .5s;
+}
+
+.todo-remove {
+    margin-left: auto;
+    padding: 10px;
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.todo-remove:hover {
+    background: #b00000;
+    transition: all ease-out .2s;
+}
+
+.checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 35px;
+    height: 35px;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.checkbox-style {
+    margin-right: 15px;
+    /*width: 35px;*/
+    /*height: 35px;*/
+    width: 100%;
+    height: 100%;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.todo-checkbox {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkbox-style::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    width: 18px;
+    height: 13px;
+    border-left: 3px solid #ccc;
+    border-bottom: 3px solid #ccc;
+    transform: rotate(-45deg);
+    left: 5px;
+}
+
+.checkbox:checked ~ .checkbox-style {
+    border: 2px solid #145d1c;
+    background: #1e7523;
+    transition: all .2s;
+}
+
+.checkbox:checked ~ .checkbox-style::before {
+    border-left: 3px solid #f1f1f1;
+    border-bottom: 3px solid #f1f1f1;
+    transition: all .2s;
+}
+
+/*.checkbox:hover ~ .checkbox-style {*/
+/*    !*border: 2px solid #bdbdbd;*!*/
+/*    filter: brightness(70%);*/
+/*    transition: all .2s;*/
+/*}*/
+
+/*.checkbox:hover ~ .checkbox-style::before {*/
+/*    !*border-left: 3px solid #bdbdbd;*!*/
+/*    !*border-bottom: 3px solid #bdbdbd;*!*/
+/*    filter: brightness(70%);*/
+/*    transition: all .2s;*/
+/*}*/
+/*.todo-text::before {*/
+/*    content: '';*/
+/*    display: inline-block;*/
+/*    width: 30px;*/
+/*    height: 30px;*/
+/*    flex-shrink: 0;*/
+/*    flex-grow: 0;*/
+/*    border: 1px solid #adb5bd;*/
+/*    border-radius: 0.25em;*/
+/*    margin-right: 0.7em;*/
+/*    background-repeat: no-repeat;*/
+/*    background-position: center center;*/
+/*    background-size: 50% 50%;*/
+/*    position: relative;*/
+/*    top: 10px;*/
+/*}*/
+/*.todo-text {*/
+/*    height: auto;*/
+/*    font-size: 20px;*/
+/*    word-wrap: break-word;*/
+/*    max-width: 70%;*/
+/*}*/
+/*.todo-input::before {*/
+/*    content: '';*/
+/*    display: inline-block;*/
+/*    width: 30px;*/
+/*    height: 30px;*/
+/*    flex-shrink: 0;*/
+/*    flex-grow: 0;*/
+/*    border: 1px solid #adb5bd;*/
+/*    border-radius: 0.25em;*/
+/*    margin-right: 0.7em;*/
+/*    background-repeat: no-repeat;*/
+/*    background-position: center center;*/
+/*    background-size: 50% 50%;*/
+/*    position: relative;*/
+/*    !*top: 10px;*!*/
+/*}*/
+.todo-text {
+    height: auto;
+    font-size: 20px;
+    word-wrap: break-word;
+    max-width: 70vw;
+}
+
+
+/*.todo-input:checked .todo-input::before {*/
+/*    width: 1000px;*/
+/*    border-color: #0b76ef;*/
+/*    background-color: #0b76ef;*/
+/*    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e")*/
+/*}*/
+
+/*!* стили при наведении курсора на checkbox *!*/
+/*.todo-input:not(:disabled):not(:checked) .todo-input:hover .todo-input::before {*/
+/*    border-color: #b3d7ff;*/
+/*}*/
+
+/*!* стили для активного состояния чекбокса (при нажатии на него) *!*/
+/*.todo-input:not(:disabled):active + .todo-input::before {*/
+/*    background-color: #b3d7ff;*/
+/*    border-color: #b3d7ff;*/
+/*}*/
+
+/*!* стили для чекбокса, находящегося в фокусе *!*/
+/*.todo-input:focus + .todo-input::before {*/
+/*    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);*/
+/*}*/
+
+/*!* стили для чекбокса, находящегося в фокусе и не находящегося в состоянии checked *!*/
+/*.todo-input:focus:not(:checked) .todo-input::before {*/
+/*    border-color: #80bdff;*/
+/*}*/
+
+/*!* стили для чекбокса, находящегося в состоянии disabled *!*/
+/*.todo-input:disabled .todo-input::before {*/
+/*    background-color: #e9ecef;*/
+/*}*/
+
+.done {
+    opacity: .75;
+}
+
+/*.strike {*/
+/*    text-decoration: line-through;*/
+/*}*/
+
+@media (max-width: 720px) {
+    .form-add-task {
+        flex-wrap: wrap;
+    }
+
+    .input-task {
+        width: 100%;
+        height: 10vh;
+        margin-right: 0;
+        font-size: 40px;
+    }
+
+    .add-task-btn {
+        width: 100%;
+        margin-top: 5px;
+        font-size: 20px;
+    }
+
+    .container {
+        width: 90vw;
+    }
+
+    .todo .todo-text {
+        font-size: 32px;
+        display: inline-block;
+    }
+
+    .todo-text::before {
+        width: 45px;
+        height: 45px;
+    }
+
+    .todo-remove {
+        font-size: 20px;
+    }
+}
+@media (max-width: 540px) {
+    header .container {
+        flex-direction: column;
+    }
+    .logo {
+        margin-bottom: 20px;
+    }
+    .input-task {
+        /*height: 20vh;*/
+        font-size: 50px;
+    }
+}
+.other-wrap {
+    display: flex;
+}
+.checkbox-wrapper {
+    /*top: 50%;*/
+    /*left: 0;*/
+    width: 35px;
+    height: 35px;
+    position: relative;
+}
+.todo-checkbox {
+    margin-right: 15px;
+}
