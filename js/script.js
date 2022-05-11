@@ -128,3 +128,6 @@ function renderCountTodos() {
     countTodos.textContent = mainTodos.querySelectorAll('.todo').length
     countDoneTodos.textContent = mainDoneTodos.querySelectorAll('.todo').length
 }
+
+
+new Todo('Add a new Todo!')
