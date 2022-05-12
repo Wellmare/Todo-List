@@ -8,11 +8,8 @@ const mainTodos = document.querySelector('.main-todos')
 const mainDoneTodos = document.querySelector('.main-done')
 
 
-renderCountTodos()
-
-
 class Todo {
-    constructor(text, completed = false) {
+    constructor(text, completed = false, repeatData = false) {
         this.text = text
         this.parent = completed ? document.querySelector('.main-done') : document.querySelector('.main-todos')
         this.completed = completed
@@ -21,6 +18,8 @@ class Todo {
         this.checkboxList()
         this.closeBtnList()
         this.insert()
+
+        if (repeatData) addDataToLocalstorage({text: this.text, completed: this.completed})
     }
 
     create() {
@@ -60,13 +59,6 @@ class Todo {
         }
 
         this.el = el
-        // const dataArr = [this.completed, this.text]
-        // const newArr = Object.values()//.push([true, 'adsad'])
-        // console.log(newArr)
-        // console.log(JSON.parse(localStorage.getItem('Todos')))
-        // const newArr = localStorage.getItem('Todos') ? JSON.parse(localStorage.getItem('Todos')).append(dataArr) : [dataArr]
-
-        // localStorage.setItem('Todos', JSON.stringify(newArr))
     }
 
     checkboxList() {
@@ -76,6 +68,9 @@ class Todo {
                 this.el.classList.add('switch')
                 setTimeout(() => {
                     this.el.remove()
+
+                    changeDataFromLocalstorage(this.text, 'completed', this.completed)
+
                     new Todo(this.text, true)
                     renderCountTodos()
                 }, 500)
@@ -84,6 +79,9 @@ class Todo {
                 this.el.classList.add('switch')
                 setTimeout(() => {
                     this.el.remove()
+
+                    changeDataFromLocalstorage(this.text, 'completed', this.completed)
+
                     new Todo(this.text, false)
                     renderCountTodos()
                 }, 500)
@@ -98,6 +96,7 @@ class Todo {
             this.el.classList.add('delete')
             setTimeout(() => {
                 this.el.remove()
+                removeDataFromLocalstorage(this.text)
                 renderCountTodos()
             }, 500)
 
@@ -118,16 +117,66 @@ class Todo {
 addTaskBtn.addEventListener('click', (e) => {
     e.preventDefault()
     if (addTaskInput.value.trim()) {
-        new Todo(addTaskInput.value.trim())
+        new Todo(addTaskInput.value.trim(), false, true)
         addTaskInput.value = ''
     } else {
         alert('Нельзя добавить пустую задачу')
     }
 })
+
 function renderCountTodos() {
     countTodos.textContent = mainTodos.querySelectorAll('.todo').length
     countDoneTodos.textContent = mainDoneTodos.querySelectorAll('.todo').length
 }
 
+// -------------------------------
 
-new Todo('Add a new Todo!')
+renderCountTodos()
+getValuesLocalstorage()
+
+if (!localStorage.getItem('visited')) localStorage.setItem('visited', true)
+
+// ----------------------------------- \\
+
+function getValuesLocalstorage() {
+    const data = localStorage.getItem('Todos') ? JSON.parse(localStorage.getItem('Todos')) : []
+    if (data.length === 0 && !localStorage.getItem('visited')) {
+        new Todo('Add a new Todo!', false, true)
+    }
+    data.forEach(todo => {
+        new Todo(todo.text, todo.completed)
+    })
+
+}
+
+function addDataToLocalstorage(item) {
+    const data = localStorage.getItem('Todos') ? JSON.parse(localStorage.getItem('Todos')) : []
+    data.push(item)
+    localStorage.setItem('Todos', JSON.stringify(data))
+}
+
+function removeDataFromLocalstorage(text) {
+    const data = localStorage.getItem('Todos') ? JSON.parse(localStorage.getItem('Todos')) : []
+    let newData = []
+    if (data !== []) {
+        data.forEach(todo => {
+            if (todo.text !== text) {
+                newData.push(todo)
+            }
+        })
+    }
+
+    localStorage.setItem('Todos', newData.length === 0 ? [] : JSON.stringify(newData))
+}
+
+function changeDataFromLocalstorage(textEl, changeablePart, newPart) {
+    const data = localStorage.getItem('Todos') ? JSON.parse(localStorage.getItem('Todos')) : []
+    const newData = []
+    data.forEach(todo => {
+        if (todo.text === textEl) {
+            todo[changeablePart] = newPart
+        }
+        newData.push(todo)
+    })
+    localStorage.setItem('Todos', JSON.stringify(newData))
+}
